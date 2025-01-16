@@ -1,16 +1,19 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
 public class PlayerHealth : MonoBehaviour
 {
     public Slider healthSlider;  // Referencia al slider de vida
+    public TextMeshProUGUI textLose;
     public int maxHealth = 10;  // Máxima cantidad de vida
     private int currentHealth;   // Vida actual de la unidad
     void Start()
     {
+        textLose.enabled = false;
         currentHealth = maxHealth;
         healthSlider.maxValue = maxHealth;  // Establecer el valor máximo del slider
         healthSlider.value = currentHealth; // Establecer el valor inicial del slider
@@ -29,6 +32,7 @@ public class PlayerHealth : MonoBehaviour
         healthSlider.value = currentHealth;  // Actualizar el valor del slider
         if (currentHealth == 0)
         {
+            textLose.enabled = true;
             Time.timeScale = 0f;
         }
     }
